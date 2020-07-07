@@ -1,0 +1,53 @@
+version: '3.7'
+
+volumes: 
+  mongodb:
+
+services:
+
+  zap-backend:
+    build: ./backend
+    command: npm run dev
+    container_name: zap-backend
+    networks:
+      - custom      
+    volumes:
+      - './backend:/backend/'
+      - '/backend/node_modules'
+    ports:
+      - '3030:3030'
+      - '9229:9229'
+    external_links:  
+      - mongo  
+    depends_on:
+      - mongo
+    # env_file:
+    #   ./backend/dev.env  
+
+  zap-ui:
+    container_name: zap-ui
+    stdin_open: true 
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    volumes:
+      - './ui:/app'
+    #   - './ui/app/node_modules'
+    ports:
+      - '3000:3000'      
+  
+
+  # MongoDB image config - this container will exposed as external so other container will use it 
+  mongo:
+    image: mongo
+    container_name: zap-db
+    ports: 
+    - "27036:27017"
+    volumes:
+      - mongodb:/data/db 
+    networks:
+      - custom      
+      
+networks:
+  custom:
+    external: true 
