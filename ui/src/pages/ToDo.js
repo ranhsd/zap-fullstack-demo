@@ -22,7 +22,14 @@ import {
   TextField,
 } from "@material-ui/core";
 
-import { getTasks, createTask, patchTask, subscribe, subscribeToTaskPatched, subscribeToTaskCreated } from "../api";
+import {
+  getTasks,
+  createTask,
+  patchTask,
+  subscribe,
+  subscribeToTaskPatched,
+  subscribeToTaskCreated,
+} from "../api";
 
 import { Add } from "@material-ui/icons";
 
@@ -33,27 +40,23 @@ export default function ToDo() {
   const [taskText, setTaskText] = useState("");
   const [saving, setSaving] = useState(false);
 
-  subscribeToTaskCreated(function(data){
+  subscribeToTaskCreated(function (data) {
     const clonedTasks = [...tasks];
     clonedTasks.push(data);
     setTasks(clonedTasks);
-  });   
+  });
 
-  subscribeToTaskPatched(function(data){
-
-    const clonedTasks = [ ...tasks ];
-    const currentTask = clonedTasks.filter(t => t._id === data._id)[0];
+  subscribeToTaskPatched((data) => {
+    const clonedTasks = [...tasks];
+    const currentTask = clonedTasks.filter((t) => t._id === data._id)[0];
     const index = clonedTasks.indexOf(currentTask);
     clonedTasks[index] = data;
     setTasks(clonedTasks);
-
   });
-
 
   useEffect(() => {
     async function _getTasks() {
       try {
-        debugger;
         const { data } = await getTasks();
         setTasks(data);
       } catch (error) {
@@ -105,23 +108,21 @@ export default function ToDo() {
                           edge="start"
                           checked={task.checked}
                           disableRipple
-                          onChange={async (e) => {
+                          onChange={(e) => {
                             try {
-                                await patchTask(task._id, {
-                                    checked: e.target.checked
-                                });
-                            } catch(error){
-
-                            }
+                              patchTask(task._id, {
+                                checked: e.target.checked,
+                              });
+                            } catch (error) {}
                           }}
                         />
                       </ListItemIcon>
                       <ListItemText primary={task.text} />
                     </ListItem>
-                    { !isLast &&  <Divider /> }
+                    {!isLast && <Divider />}
                   </>
                 );
-              })}    
+              })}
             </List>
           </CardContent>
         </Card>
@@ -161,7 +162,7 @@ export default function ToDo() {
             color="primary"
             onClick={async () => {
               try {
-                const newTask = await createTask({
+                const newTask = createTask({
                   checked: false,
                   text: taskText,
                 });

@@ -1,0 +1,9 @@
+runtime: nodejs
+env: flex
+# env_variables:
+    # BUCKET_NAME: "example-gcs-bucket"
+manual_scaling:
+    instances: 1
+
+network:
+    session_affinity: true

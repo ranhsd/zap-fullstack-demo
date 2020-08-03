@@ -1,4 +1,5 @@
 {
-  "host": "backend-app.feathersjs.com",
-  "port": "PORT"
+  "host": "0.0.0.0",
+  "port": "8080",
+  "mongodb": "mongodb+srv://dbadm:08BFeFTYdBouVQHM@cluster-swahn.gcp.mongodb.net/zap-backend?retryWrites=true&w=majority"
 }
