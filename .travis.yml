@@ -1,14 +1,17 @@
 language: node_js
 node_js:
-  - "node"
+- node
 warnings_are_errors: false
 before_install: cd ui
 install:
-  - npm install
+- npm install
 script:
-  - npm run build
+- npm run build
 deploy:
   provider: firebase
   skip_cleanup: true
   token:
-    secure: "paste the encrypted firebase token here!"
+    secure: paste the encrypted firebase token here!
+env:
+  global:
+    secure: t22C942gjW/gMZNUlX5Uy75yPHTh0SwceiZugWPUkXw/qGK1GnIePsgV2dINqn9oIEEnS396q+hSX0IESaCMYzaKWLPfchGWBKMnYOkHoBL2CgNNEDXEEuUTspkPnGvPEEq4bL6Mg8n9KU/VpQmQKk34MaCmFTcAsyviuzfMx/Vlbyn5Bzo42Ox2KrwnGidfPSG76dR65Krf0CK3w03Hq1JlbR56XANjYaEMMAEEgqaOz182GosB/W43XY1wXTvE38YUWwMQNZWWkwKeavlNaN7guBZPLIbd/72rhn2kI2xMajxvZ6ar099pGhDhGbcqrzeQbXSgEQxjhtlvS4ZJAbhmYO9GGQIAbT1eOMRckaKMZc9bYj8SmfFZn2hqjU3eVyTjjHUYV8FvxEOnGZHUqJ41R8phmJQHELpqQwt6C/4WHAwlZf3KUw+RxNG9wgb8jLjLGAUCBsI93YWCou+rjkMqZucsHd7gbIeLGczaogB9RCYIrzJ6D3KuO9naUIEIOIwYniKPMFA6wB89lOHOjoucIrqYIqmr8j6e/QbIQ1ayQJOxaxPqO0rtZeArPGOQEahR8SqQ5g5lgbZ+TtLj8xKBFRzTIzgPTbloJsjHS/27Op18xMpazKor1boCYFcZ8PjN7LGNjsZbtv7uidSbhgIn9P8ppKEetoui7oGjMBU=
