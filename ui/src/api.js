@@ -2,7 +2,7 @@ const feathers = require('@feathersjs/feathers');
 const socketio = require('@feathersjs/socketio-client');
 const io = require('socket.io-client');
 
-const socket = io('http://localhost:3030', {timeout: 20000});
+const socket = io('https://sample-project-1982.ue.r.appspot.com', {timeout: 20000});
 const app = feathers();
 
 app.configure(socketio(socket));
