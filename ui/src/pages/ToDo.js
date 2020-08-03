@@ -72,7 +72,7 @@ export default function ToDo() {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">To Do's</Typography>
+          <Typography variant="h6">To Do's Update</Typography>
         </Toolbar>
       </AppBar>
       <Container
