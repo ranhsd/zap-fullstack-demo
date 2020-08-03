@@ -22,12 +22,14 @@ const patchTask = async (id, payload) => {
 };
 
 const subscribeToTaskCreated = (fnCallback) => {
+    taskService.removeAllListeners("created");
     taskService.on('created', data => {
         fnCallback(data);
     });
 };
 
 const subscribeToTaskPatched = (fnCallback) => {
+    taskService.removeAllListeners("patched");
     taskService.on('patched', data => {
         fnCallback(data);
     });
