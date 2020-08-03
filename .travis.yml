@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "node"
 warnings_are_errors: false
+before_install: cd ui
 install:
   - npm install
 script:
